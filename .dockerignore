@@ -4,7 +4,6 @@ node_modules
 
 # Fichiers de build et cache
 .svelte-kit
-build
 dist
 .output
 
