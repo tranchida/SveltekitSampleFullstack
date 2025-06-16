@@ -122,9 +122,7 @@
 			</div>
 		</div>
 	</nav>
-	<main
-		class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 dark:text-gray-100"
-	>
+	<main>
 		{@render children()}
 	</main>
 	<footer class="bg-gray-100 dark:bg-gray-800 mt-auto">

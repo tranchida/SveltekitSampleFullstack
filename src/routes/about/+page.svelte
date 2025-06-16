@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Userstable from "$lib/userstable.svelte";
+    import UsersTable from "$lib/usersTable.svelte";
 
     import type { PageData } from "./$types";
 
     export let data: PageData;
 </script>
 
-<Userstable users={data.users} />
+<UsersTable title="All users" users={data.users} />
