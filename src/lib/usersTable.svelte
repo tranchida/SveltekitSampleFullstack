@@ -1,9 +1,30 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
     import type { Users } from "@prisma/client";
+    import type { SubmitFunction } from "@sveltejs/kit";
+    import { writable } from "svelte/store";
 
     export let title = "User Table";
     export let users: Users[] = [];
+
+    const updatingStore = writable<Set<number>>(new Set());
+
+    function handleSubmit(id: number) {
+        return (({ formData, formElement, action, controller, submitter, cancel }) => {
+            updatingStore.update(set => {
+                set.add(id);
+                return set;
+            });
+            
+            return async ({ result, update }) => {
+                await update();
+                updatingStore.update(set => {
+                    set.delete(id);
+                    return set;
+                });
+            };
+        }) as SubmitFunction;
+    }
 </script>
 
 <div>
@@ -33,16 +54,19 @@
                         <td class="p-3">{user.firstname}</td>
                         <td class="p-3">{user.employed}</td>
                         <td class="p-3">{user.date}</td>
-                        <td class="p-3">{user.active ? "Yes" : "No"}</td>
                         <td class="p-3">
-                            <form method="POST" action="?/switchState" use:enhance>
+                            <span class="transition-colors duration-1000 {user.active ? 'text-green-500' : 'text-red-500'}">
+                                {user.active ? "Yes" : "No"}
+                            </span>
+                        </td>
+                        <td class="p-3">
+                            <form method="POST" action="?/switchState" use:enhance={handleSubmit(user.id)}>
                                 <input type="hidden" name="id" value={user.id} />
                                 <button type="submit"
-                                class="bg-black text-white px-4 py-2 rounded-md hover:bg-indigo-600 hover:cursor-pointer"
+                                class="bg-black text-white px-4 py-2 rounded-md hover:bg-indigo-600 hover:cursor-pointer transition-colors duration-300"
                             >
                                 &#128259; active
                             </button>
-
                             </form>
                         </td>
                     </tr>
