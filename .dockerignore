@@ -1,0 +1,51 @@
+# Dépendances
+node_modules
+.pnpm-store
+
+# Fichiers de build et cache
+.svelte-kit
+build
+dist
+.output
+
+# Fichiers de développement
+.git
+.gitignore
+.env
+.env.*
+*.log
+.DS_Store
+.vscode
+.idea
+*.swp
+*.swo
+
+# Fichiers de test
+coverage
+__tests__
+*.test.*
+*.spec.*
+
+# Fichiers temporaires
+*.tmp
+*.temp
+.cache
+
+# Fichiers de documentation
+README.md
+CHANGELOG.md
+docs
+*.md
+
+# Fichiers de configuration locaux
+.editorconfig
+.eslintrc
+.prettierrc
+tsconfig.json
+vite.config.ts
+svelte.config.js
+
+# Fichiers Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml 
