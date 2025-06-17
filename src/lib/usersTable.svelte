@@ -1,29 +1,8 @@
 <script lang="ts">
-    import { enhance } from "$app/forms";
     import type { Users } from "@prisma/client";
-    import type { SubmitFunction } from "@sveltejs/kit";
-    import { writable } from "svelte/store";
-
+    import { enhance } from "$app/forms";
     let { title = "User Table", users = [] }: { title: string, users: Users[] } = $props();
 
-    const updatingStore = writable<Set<number>>(new Set());
-
-    function handleSubmit(id: number) {
-        return (() => {
-            updatingStore.update(set => {
-                set.add(id);
-                return set;
-            });
-            
-            return async ({ update }) => {
-                await update();
-                updatingStore.update(set => {
-                    set.delete(id);
-                    return set;
-                });
-            };
-        }) as SubmitFunction;
-    }
 </script>
 
 <div>
@@ -59,7 +38,7 @@
                             </span>
                         </td>
                         <td class="p-3">
-                            <form method="POST" action="?/switchState" use:enhance={handleSubmit(user.id)}>
+                            <form method="POST" action="?/switchState" use:enhance>
                                 <input type="hidden" name="id" value={user.id} />
                                 <button type="submit"
                                 class="bg-black text-white px-4 py-2 rounded-md hover:bg-indigo-600 hover:cursor-pointer transition-colors duration-300"
