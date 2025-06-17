@@ -4,19 +4,18 @@
     import type { SubmitFunction } from "@sveltejs/kit";
     import { writable } from "svelte/store";
 
-    export let title = "User Table";
-    export let users: Users[] = [];
+    let { title = "User Table", users = [] }: { title: string, users: Users[] } = $props();
 
     const updatingStore = writable<Set<number>>(new Set());
 
     function handleSubmit(id: number) {
-        return (({ formData, formElement, action, controller, submitter, cancel }) => {
+        return (() => {
             updatingStore.update(set => {
                 set.add(id);
                 return set;
             });
             
-            return async ({ result, update }) => {
+            return async ({ update }) => {
                 await update();
                 updatingStore.update(set => {
                     set.delete(id);

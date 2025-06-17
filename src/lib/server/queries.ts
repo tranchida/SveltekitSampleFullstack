@@ -1,4 +1,4 @@
-import type { PageServerLoad, Actions } from "../routes/about/$types";
+import type { PageServerLoad, Actions } from "../../routes/about/$types";
 import { getUsers, switchActiveState } from "./model";
 
 export const loadUsers = (async () => {
