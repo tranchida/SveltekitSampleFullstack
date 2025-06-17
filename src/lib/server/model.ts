@@ -1,17 +1,27 @@
-import prisma from "./prisma";
+import { Users } from "../../entity/Users";
 
 export async function getUsers() {
-    return await prisma.users.findMany({
-        orderBy: [{ lastname: "asc" }, { firstname: "asc" }],
+    const users = await Users.find({
+        order: { lastname: "asc", firstname: "asc" },
     });
+    return users.map(user => ({
+        id: user.id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        employed: user.employed,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        active: user.active,
+    }));
 }
 
 export async function switchActiveState(id : number) {
-    const user = await prisma.users.findUniqueOrThrow({
+    const user = await Users.findOneOrFail({
         where: { id },
+        select: ["active"],
     });
-    await prisma.users.update({
-        where: { id },
-        data: { active: !user.active },
+    await Users.update(id, {
+        active: !user.active,
+        updatedAt: new Date(),
     });
 }
