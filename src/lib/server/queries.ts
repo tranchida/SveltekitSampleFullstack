@@ -3,7 +3,13 @@ import type { Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "../../routes/about/$types";
 
 export const loadUsers: PageServerLoad = async () => {
-    const users = await prisma.user.findMany()
+    const users = await prisma.user.findMany({
+      orderBy: [{
+        lastName: "asc",
+      }, {
+        firstName: "asc"
+      }]
+    });
     return { 
       users : users
     }

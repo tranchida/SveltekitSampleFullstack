@@ -39,7 +39,7 @@
 <div
 	class="min-h-screen flex flex-col dark:bg-gray-900 transition-colors duration-200"
 >
-	<nav class="bg-blue-500 dark:bg-blue-900 shadow-md">
+	<nav class="bg-blue-500 dark:bg-blue-900 shadow-md sticky top-0" >
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="flex justify-between h-16">
 				<div class="flex items-center space-x-1">
@@ -115,11 +115,11 @@
 	<main>
 		{@render children()}
 	</main>
-	<footer class="bg-gray-100 dark:bg-gray-800 mt-auto">
+	<footer class="bg-gray-100 dark:bg-gray-800 mt-auto sticky bottom-0">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 			<div class="flex justify-between items-center">
 				<div class="text-gray-600 dark:text-gray-300 text-sm">
-					© {new Date().getFullYear()} NuxtTest. Tous droits réservés.
+					© {new Date().getFullYear()} SveltekitSampleFullstack version 1.0.0. Tous droits réservés.
 				</div>
 				<div class="flex space-x-4">
 					<a

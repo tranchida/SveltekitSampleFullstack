@@ -15,9 +15,9 @@
                 class="border-b border-slate-200 bg-slate-100 text-sm font-medium text-slate-600 dark:bg-slate-100"
             >
                 <tr>
-                    <th class="p-3 text-start font-medium"> ID </th>
                     <th class="p-3 text-start font-medium"> Last Name </th>
                     <th class="p-3 text-start font-medium"> First Name </th>
+                    <th class="p-3 text-start font-medium"> Email </th>
                     <th class="p-3 text-start font-medium"> Employed </th>
                     <th class="p-3 text-start font-medium"> Date </th>
                     <th class="p-3 text-start font-medium"> Active </th>
@@ -27,9 +27,9 @@
             <tbody class=" text-slate-800 dark:text-white">
                 {#each users as user}
                     <tr class="border-b border-slate-200 last:border-0">
-                        <td class="p-3">{user.id}</td>
                         <td class="p-3">{user.lastName}</td>
                         <td class="p-3">{user.firstName}</td>
+                        <td class="p-3">{user.email}</td>
                         <td class="p-3">{user.employed}</td>
                         <td class="p-3">{user.createdAt.toLocaleDateString()}</td>
                         <td class="p-3">
