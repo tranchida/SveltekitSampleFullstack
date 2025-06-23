@@ -1,10 +1,11 @@
 <script lang="ts">
     import UsersTable from "$lib/usersTable.svelte";
+    import type { User } from "@prisma/client";
     import type { PageData } from "./$types";
     let { data }: { data: PageData } = $props();
 
-    let managers = $derived(data.users.filter((user: Users) => user.employed === "Manager"));
-    let developers = $derived(data.users.filter((user: Users) => user.employed === "Developer"));
+    let managers = $derived(data.users.filter((user: User) => user.employed === "Manager"));
+    let developers = $derived(data.users.filter((user: User) => user.employed === "Developer"));
 </script>
 
 <UsersTable title="Managers" users={managers} />

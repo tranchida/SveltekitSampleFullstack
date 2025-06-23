@@ -1,7 +1,7 @@
 <script lang="ts">
-    import type { Users } from "@prisma/client";
+    import type { User } from "@prisma/client";
     import { enhance } from "$app/forms";
-    let { title = "User Table", users = [] }: { title: string, users: Users[] } = $props();
+    let { title = "User Table", users = [] }: { title: string, users: User[] } = $props();
 
 </script>
 
@@ -28,10 +28,10 @@
                 {#each users as user}
                     <tr class="border-b border-slate-200 last:border-0">
                         <td class="p-3">{user.id}</td>
-                        <td class="p-3">{user.lastname}</td>
-                        <td class="p-3">{user.firstname}</td>
+                        <td class="p-3">{user.lastName}</td>
+                        <td class="p-3">{user.firstName}</td>
                         <td class="p-3">{user.employed}</td>
-                        <td class="p-3">{user.date}</td>
+                        <td class="p-3">{user.createdAt.toLocaleDateString()}</td>
                         <td class="p-3">
                             <span class="transition-colors duration-1000 {user.active ? 'text-green-500' : 'text-red-500'}">
                                 {user.active ? "Yes" : "No"}

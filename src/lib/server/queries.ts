@@ -1,15 +1,27 @@
-import type { PageServerLoad, Actions } from "../../routes/about/$types";
-import { getUsers, switchActiveState } from "./model";
+import { prisma } from "$lib/server/database";
+import type { Actions } from "@sveltejs/kit";
+import type { PageServerLoad } from "../../routes/about/$types";
 
-export const loadUsers = (async () => {
-  const users = await getUsers();
-  return { users };
-}) satisfies PageServerLoad;
+export const loadUsers: PageServerLoad = async () => {
+    const users = await prisma.user.findMany()
+    return { 
+      users : users
+    }
+};
 
-export const userActions = {
+export const actionsUsers : Actions = {
   switchState: async ({ request }: { request: Request }) => {
     const data = await request.formData();
-    const id = Number(data.get("id"));
-    await switchActiveState(id);
+    const id = data.get("id") as string;
+    const user = await prisma.user.findUnique({
+      where: { id },
+    });
+    if (!user) {
+      return { error: "User not found" };
+    }
+    await prisma.user.update({
+      where: { id },
+      data: { active: !user.active },
+    });
   },
-} satisfies Actions; 
+}
