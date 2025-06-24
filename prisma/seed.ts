@@ -285,7 +285,7 @@ async function main() {
         employed: "Manager",
         email: "liam.phillips@fake.com",
         password: "test",
-      }
+      },
     ],
   });
   console.log("Database seeded successfully");
