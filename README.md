@@ -1,31 +1,85 @@
-# sv
+# SvelteKit Sample Fullstack
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is a fullstack sample project using [SvelteKit](https://kit.svelte.dev/), Prisma, and Vite. It demonstrates a modern web application setup with a Svelte frontend and a Node.js backend, including database integration.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- SvelteKit for frontend and backend routing
+- Prisma ORM for database access
+- Vite for fast development and builds
+- Docker support
+- User management example
+
+## Getting Started
+
+### Install dependencies
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+pnpm install
+# or
+npm install
+# or
+yarn install
 ```
 
-## Developing
+### Development
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Start the development server:
 
 ```bash
+pnpm run dev
+# or
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# or
+yarn dev
 ```
 
-## Building
+Visit [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Database Setup
+
+Edit `prisma/schema.prisma` to configure your database.
+
+Run migrations:
+
+```bash
+pnpm prisma migrate dev
+```
+
+Seed the database:
+
+```bash
+pnpm run seed
+```
+
+### Building for Production
+
+```bash
+pnpm run build
+```
+
+Preview the production build:
+
+```bash
+pnpm run preview
+```
+
+## Docker
+
+Build and run the app in Docker:
+
+```bash
+docker build -t sveltekit-app .
+docker run -p 5173:5173 sveltekit-app
+```
+
+## Deployment
+
+To deploy, install the appropriate [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## License
+
+MIT
 
 To create a production version of your app:
 
