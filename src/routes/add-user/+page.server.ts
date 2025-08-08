@@ -11,6 +11,13 @@ export const actions: Actions = {
     const lastName = data.get("lastName") as string;
     const employed = data.get("employed") as string;
 
+    console.log("Received data:", {
+      email,
+      firstName,
+      lastName,
+      employed
+    });
+
     // Validation basique
     if (!email || !password || !firstName || !lastName || !employed) {
       return fail(400, {

@@ -8,5 +8,7 @@
     let developers = $derived(data.users.filter((user: User) => user.employed === "Developer"));
 </script>
 
+<div class="pt-[64px]">
 <UsersTable title="Managers" users={managers} />
 <UsersTable title="Developers" users={developers} />
+</div>
